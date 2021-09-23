@@ -20,73 +20,73 @@ export const AppNavigator = () => {
   const [appUser, setAppUser] = useState(null)
 
   return (
-           <AppUserContext.Provider value={{ appUser, setAppUser }}>
-    {appUser ? (
-          <RouteFeedContext.Provider value={{ routes, setRoutes }}>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName
+    <AppUserContext.Provider value={{ appUser, setAppUser }}>
+      {appUser ? (
+        <RouteFeedContext.Provider value={{ routes, setRoutes }}>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName
 
-            if (route.name === 'Home') {
-              iconName = focused ? 'home-circle' : 'home-circle-outline'
-            } else if (route.name === 'Record') {
-              iconName = focused ? 'record-circle' : 'record-circle-outline'
-            } else if (route.name === 'You') {
-              iconName = focused ? 'account-circle' : 'account-circle-outline'
-            }
+                if (route.name === 'Home') {
+                  iconName = focused ? 'home-circle' : 'home-circle-outline'
+                } else if (route.name === 'Record') {
+                  iconName = focused ? 'record-circle' : 'record-circle-outline'
+                } else if (route.name === 'You') {
+                  iconName = focused ? 'account-circle' : 'account-circle-outline'
+                }
 
-            return (
-              <MaterialCommunityIcons
-                name={iconName}
-                size={size}
-                color={color}
-              />
-            )
-          },
-          tabBarActiveTintColor: 'blue',
-          tabBarInactiveTintColor: 'gray',
-        })}
-      >
-        <Tab.Screen
-          name="Home"
-          component={FeedNavigator}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
-          name="Record"
-          component={RecordNavigator}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
-          name="You"
-          component={ProfileNavigator}
-          options={{ headerShown: false }}
-        />
-      </Tab.Navigator>
-    </RouteFeedContext.Provider>
+                return (
+                  <MaterialCommunityIcons
+                    name={iconName}
+                    size={size}
+                    color={color}
+                  />
+                )
+              },
+              tabBarActiveTintColor: 'blue',
+              tabBarInactiveTintColor: 'gray',
+            })}
+          >
+            <Tab.Screen
+              name="Home"
+              component={FeedNavigator}
+              options={{ headerShown: false }}
+            />
+            <Tab.Screen
+              name="Record"
+              component={RecordNavigator}
+              options={{ headerShown: false }}
+            />
+            <Tab.Screen
+              name="You"
+              component={ProfileNavigator}
+              options={{ headerShown: false }}
+            />
+          </Tab.Navigator>
+        </RouteFeedContext.Provider>
 
       ) : (
         <Stack.Navigator>
-        <Stack.Screen
-          name="Welcome"
-          component={Welcome}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Log In" component={Login} />
-        <Stack.Screen name="Sign Up" component={SignUp} />
-      </Stack.Navigator>
+          <Stack.Screen
+            name="Welcome"
+            component={Welcome}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="Log In" component={Login} />
+          <Stack.Screen name="Sign Up" component={SignUp} />
+        </Stack.Navigator>
       )
       }
-  </AppUserContext.Provider>
-)
+    </AppUserContext.Provider>
+  )
 }
 const App = () => {
   return (
 
-      <NavigationContainer>
-        <AppNavigator />
-      </NavigationContainer>
+    <NavigationContainer>
+      <AppNavigator />
+    </NavigationContainer>
   )
   
 }
